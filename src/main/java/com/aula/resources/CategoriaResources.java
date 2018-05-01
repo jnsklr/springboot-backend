@@ -24,4 +24,6 @@ public class CategoriaResources {
 
 		return ResponseEntity.ok(obj);
 	}
+	
+	
 }
