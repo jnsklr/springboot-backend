@@ -13,6 +13,7 @@ import com.aula.domin.Cidade;
 import com.aula.domin.Cliente;
 import com.aula.domin.Endereco;
 import com.aula.domin.Estado;
+import com.aula.domin.ItemPedido;
 import com.aula.domin.Pagamento;
 import com.aula.domin.PagamentoComBoleto;
 import com.aula.domin.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.aula.repositories.CidadeRepository;
 import com.aula.repositories.ClienteRepository;
 import com.aula.repositories.EnderecoRepository;
 import com.aula.repositories.EstadoRepository;
+import com.aula.repositories.ItemPedidoRepository;
 import com.aula.repositories.PagamentoRepository;
 import com.aula.repositories.PedidoRepository;
 import com.aula.repositories.ProdutoRepository;
@@ -48,6 +50,8 @@ public class TesteAulaApplication implements CommandLineRunner {
 	private PedidoRepository pedRepo;
 	@Autowired
 	private PagamentoRepository pagRepo;
+	@Autowired
+	private ItemPedidoRepository itRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TesteAulaApplication.class, args);
@@ -115,6 +119,19 @@ public class TesteAulaApplication implements CommandLineRunner {
 
 		pedRepo.saveAll(Arrays.asList(ped1, ped2));
 		pagRepo.saveAll(Arrays.asList(pag1, pag2));
+
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+
+		itRepo.saveAll(Arrays.asList(ip1, ip2, ip3));
 
 	}
 }
