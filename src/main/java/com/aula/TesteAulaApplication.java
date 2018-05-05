@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.aula.domin.Categoria;
+import com.aula.domin.Cidade;
+import com.aula.domin.Estado;
 import com.aula.domin.Produto;
 import com.aula.repositories.CategoriaRepository;
+import com.aula.repositories.CidadeRepository;
+import com.aula.repositories.EstadoRepository;
 import com.aula.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -19,6 +23,10 @@ public class TesteAulaApplication implements CommandLineRunner {
 	private CategoriaRepository cRepo;
 	@Autowired
 	private ProdutoRepository pRepo;
+	@Autowired
+	private EstadoRepository eRopo;
+	@Autowired
+	private CidadeRepository cdRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TesteAulaApplication.class, args);
@@ -43,6 +51,19 @@ public class TesteAulaApplication implements CommandLineRunner {
 
 		cRepo.saveAll(Arrays.asList(cat1, cat2));
 		pRepo.saveAll(Arrays.asList(p1, p2, p3));
+
+		Estado est1 = new Estado(null, "Minas");
+		Estado est2 = new Estado(null, "São Paulo");
+
+		Cidade c1 = new Cidade(null, "uberlandia", est1);
+		Cidade c2 = new Cidade(null, "são paulo", est2);
+		Cidade c3 = new Cidade(null, "campinas", est2);
+
+		est1.getCidades().addAll(Arrays.asList(c1));
+		est2.getCidades().addAll(Arrays.asList(c2, c3));
+
+		eRopo.saveAll(Arrays.asList(est1, est2));
+		cdRepo.saveAll(Arrays.asList(c1, c2, c3));
 
 	}
 }
