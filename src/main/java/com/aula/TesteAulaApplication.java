@@ -63,6 +63,11 @@ public class TesteAulaApplication implements CommandLineRunner {
 		Categoria cat1 = new Categoria(null, "informática");
 		Categoria cat2 = new Categoria(null, "escritório");
 
+		Categoria cat3 = new Categoria(null, "cama");
+		Categoria cat4 = new Categoria(null, "mesa");
+		Categoria cat5 = new Categoria(null, "banho");
+		Categoria cat6 = new Categoria(null, "perfume");
+
 		Produto p1 = new Produto(null, "computador", 3000.00);
 		Produto p2 = new Produto(null, "impressora", 800.00);
 		Produto p3 = new Produto(null, "mouse", 20.00);
@@ -74,7 +79,7 @@ public class TesteAulaApplication implements CommandLineRunner {
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 
-		catRepo.saveAll(Arrays.asList(cat1, cat2));
+		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6));
 		prodRepo.saveAll(Arrays.asList(p1, p2, p3));
 
 		Estado est1 = new Estado(null, "Minas");
