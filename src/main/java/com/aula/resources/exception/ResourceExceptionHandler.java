@@ -11,6 +11,7 @@ import com.aula.services.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
+
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandertError> objnotfaund(ObjectNotFoundException e, HttpServletRequest request) {
 
@@ -18,4 +19,10 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 	}
 
+	@ExceptionHandler(DataIntegretService.class)
+	public ResponseEntity<StandertError> dataIntegrat(DataIntegretService e, HttpServletRequest request) {
+
+		StandertError err = new StandertError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	}
 }
