@@ -1,5 +1,6 @@
 package com.aula.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class CategoriaService {
 			throw new DataIntegretService("Não pode excluir categoria que não tem produtos");
 
 		}
+	}
+
+	public List<Categoria> findAll() {
+
+		return repo.findAll();
 	}
 
 }
