@@ -16,7 +16,6 @@ import com.aula.domin.Endereco;
 import com.aula.domin.enuns.TipoCliente;
 import com.aula.dto.ClienteDTO;
 import com.aula.dto.ClienteNewDTO;
-import com.aula.repositories.CidadeRepository;
 import com.aula.repositories.ClienteRepository;
 import com.aula.repositories.EnderecoRepository;
 import com.aula.resources.exception.DataIntegretService;
